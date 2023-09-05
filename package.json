@@ -1,0 +1,13 @@
+{
+  "name": "redis-init",
+  "version": "1.0.0",
+  "description": "- You need to install a distros(distribution) for Linux lets take Ubuntu\r - First you need wsl (Also disable your antivirus, because sometimes it cries. This is 100% safe)\r   - Open cmd or powershell as admin\r     - `wsl --install`\r   - List out all distros\r     - `wsl --list --online`\r   - Install Ubuntu\r     - `wsl --install -d Ubuntu`\r   - Open Ubuntu from search bar\r     - For the first time it will ask you to set name and password\r     - Then install package universe `sudo add-apt-repository universe`, this will allow you to install all the open-source package like Redis which do not come under Ubuntu\r     - Finally install Redis `sudo apt-get intall redis`\r - Congratulations 🎉 You have installed Redis, now to start Redis Server on you local machine type `redis-server` in your Ubuntu terminal.\r - Now open another Ubuntu terminal and type `redis-cli`, now you can communicate with your redis server\r - Remember not to close your Redis Server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -32,3 +32,17 @@ _Note - < abc > needs to be replaced by appropriate data_
 - `CLEAR`🔸Clear's the console
 - `EXPIRE <KEY_NAME> <SECONDS>`🔸For existing key set expiration time
 - `SETEX <KEY_NAME> <SECONDS> <VALUE>`🔸Set a new key with expiration time
+
+### Array
+
+- `LPUSH <KEY_NAME> <VALUE>`
+- `RPUSH <KEY_NAME> <VALUE>`
+- `LPOP <KEY_NAME>`
+- `RPOP <KEY_NAME>`
+- `LRANGE <KEY_NAME> <START> <END>`
+
+### Set
+
+- `SADD <KEY_NAME> <VALUE>`
+- `SMEMBERS <KEY_NAME>`
+- `SREM <KEY_NAME> <VALUE>`

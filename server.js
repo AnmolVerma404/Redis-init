@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const Redis = require('redis');
-const { resolve } = require('path');
 
 const DEFAULT_EXPIRATION = 3600;
 
@@ -26,20 +25,22 @@ app.get('/photos', async (req, res) => {
 		);
 		return data;
 	});
+	// await redisClient.disconnect();
 	res.json(photos);
 });
 
 app.get('/photos/:id', async (req, res) => {
-    const photo = await getOrSetCache(`photos:${req.params.id}`, async () => {
+	const photo = await getOrSetCache(`photos:${req.params.id}`, async () => {
 		const { data } = await axios.get(
 			`http://jsonplaceholder.typicode.com/photos/${req.params.id}`
 		);
 		return data;
 	});
+	// await redisClient.disconnect();
 	res.json(photo);
 });
 
-function getOrSetCache(key, cb) {
+async function getOrSetCache(key, cb) {
 	return new Promise((resolve, reject) => {
 		redisClient.get(key, async (error, data) => {
 			if (error) return reject(error);
@@ -51,6 +52,22 @@ function getOrSetCache(key, cb) {
 	});
 }
 
-app.listen(8080, () => {
+const server = app.listen(8080, async () => {
+	// redisClient.on('error', error => {
+	// 	console.log('Redis client Error', error);
+	// });
+	await redisClient.connect();
+
+    await redisClient.ping();
 	console.log('Running on -> http://localhost:8080');
+});
+process.on('SIGINT', async () => {
+	console.log('Received SIGINT signal. Closing the server...');
+
+	// await redisClient.disconnect();
+
+	server.close(() => {
+		console.log('Server has been closed.');
+		process.exit(0);
+	});
 });

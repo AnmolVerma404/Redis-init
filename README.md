@@ -23,6 +23,7 @@
 ## Basic Commands
 
 _Note - < abc > needs to be replaced by appropriate data_
+**KV - Key-Value**
 
 - `SET <KEY_NAME> <VALUE>`🔸Set a key-value in redis volitile storage
 - `GET <KEY_NAME>`🔸Get the value for given KEY_NAME
@@ -35,14 +36,26 @@ _Note - < abc > needs to be replaced by appropriate data_
 
 ### Array
 
-- `LPUSH <KEY_NAME> <VALUE>`
-- `RPUSH <KEY_NAME> <VALUE>`
-- `LPOP <KEY_NAME>`
-- `RPOP <KEY_NAME>`
-- `LRANGE <KEY_NAME> <START> <END>`
+- `LPUSH <KEY_NAME> <VALUE>`🔸Add's KV at the start
+- `RPUSH <KEY_NAME> <VALUE>`🔸Add's KV at the end
+- `LPOP <KEY_NAME>`🔸Remove's KV from start
+- `RPOP <KEY_NAME>`🔸Remove's KV from end
+- `LRANGE <KEY_NAME> <START> <END>`🔸 Log's all the KV's from range start to end
 
-### Set
+### Set _(Does not contain duplicates)_
 
-- `SADD <KEY_NAME> <VALUE>`
-- `SMEMBERS <KEY_NAME>`
-- `SREM <KEY_NAME> <VALUE>`
+- `SADD <KEY_NAME> <VALUE>`🔸Add KV in set
+- `SMEMBERS <KEY_NAME>`🔸Log's all the KV pair's in set
+- `SREM <KEY_NAME> <VALUE>`🔸Remove's KV from set
+
+### Hashes
+
+#### **Why even need Hash, as Redis is already built upon key-value pairs?**
+
+##### Hash in Redis gives user's a way to store multiple field's and value's for a key. Additionally it allow user to store complex data.
+
+- `HSET <KEY> <FIELD> <VALUE>`🔸 Add's key-{field, value} in hash
+- `HGET <KEY> <FIELD>`🔸Get the value for a key's field
+- `HGETALL <KEY>`🔸Get all Field and Values for a Key
+- `HDEL <KEY> <FIELD>`🔸Removes Field and Value for a given field
+- `HEXISTS <KEY> <FIELD>`🔸Check if a field exists
